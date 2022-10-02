@@ -14,23 +14,23 @@ public:
     int solve(vector<int>& nums, int sum) {
         int max_arr = 0;
         int current_sum = 0;
-        int i = 0;
-        int j = 0;
-        while (j < nums.size()) {
-            current_sum += nums[j];
+        int left = 0;
+        int right = 0;
+        while (right < nums.size()) {
+            current_sum += nums[right];
             if (current_sum < sum) {
-                j++;
+                right++;
             }
             else if (current_sum == sum) {
-                max_arr = max(max_arr, j - i + 1);
-                j++;
+                max_arr = max(max_arr, right - left + 1);
+                right++;
             }
             else {
                 while (current_sum > sum) {
-                    current_sum -= nums[i];
-                    i++;
+                    current_sum -= nums[left];
+                    right++;
                 }
-                j++;
+                right++;
             }
         }
         return max_arr;
